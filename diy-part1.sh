@@ -19,6 +19,9 @@
 
 # add my software
 echo 'src-git helloworld https://github.com/fw876/helloworld.git' >> feeds.conf.default
-echo 'src-git opentopd  https://github.com/sirpdboy/sirpdboy-package' >> feeds.conf.default
+#echo 'src-git opentopd  https://github.com/sirpdboy/sirpdboy-package' >> feeds.conf.default
 echo 'src-git cdnspeedtest https://github.com/immortalwrt-collections/openwrt-cdnspeedtest.git' >> feeds.conf.default
 echo 'src-git cloudflarespeedtest https://github.com/mingxiaoyu/luci-app-cloudflarespeedtest' >> feeds.conf.default
+echo 'src-git OpenClash https://github.com/vernesong/OpenClash' >> feeds.conf.default
+echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >> feeds.conf.default
+echo 'src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall;luci' >> feeds.conf.default
