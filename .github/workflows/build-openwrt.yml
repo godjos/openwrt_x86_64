@@ -65,6 +65,7 @@ jobs:
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
+      working-directory: /workdir
       run: |
         [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
         chmod +x $DIY_P1_SH
@@ -72,12 +73,15 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P1_SH
 
     - name: Update feeds
+      working-directory: /workdir
       run: cd openwrt && ./scripts/feeds update -a
 
     - name: Install feeds
+      working-directory: /workdir
       run: cd openwrt && ./scripts/feeds install -a
 
     - name: Load custom configuration
+      working-directory: /workdir
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
@@ -93,6 +97,7 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: Download package
+      working-directory: /workdir
       id: package
       run: |
         cd openwrt
@@ -102,6 +107,7 @@ jobs:
         find dl -size -1024c -exec rm -f {} \;
 
     - name: Compile the firmware
+      working-directory: /workdir
       id: compile
       run: |
         cd openwrt
@@ -124,6 +130,7 @@ jobs:
         path: openwrt/bin
 
     - name: Organize files
+      working-directory: /workdir
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
